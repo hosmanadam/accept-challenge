@@ -6,10 +6,10 @@ Script to automate folder & file creation for challenges
 Example:
   - $ python3 makeproject.py
     Num:  33
-    Name: Kickass Fibonacci Sequence #5!
+    Name: Amazing Fibonacci Sequence #5!
     URL:  http://not-important-in-this-example.com
-  - creates `./→33_kickass-fibonacci-sequence-5/main.py`
-            `./→33_kickass-fibonacci-sequence-5/tests.py`
+  - creates `./→33_amazing-fibonacci-sequence-5/main.py`
+            `./→33_amazing-fibonacci-sequence-5/tests.py`
 """
 
 
@@ -20,7 +20,8 @@ from templates import UNITTEST_TEMPLATE, FUNCTION_TEMPLATE
 
 
 def make_project(num, name, url):
-    os.chdir(os.sys.path[0])                 # Set CWD (make sure we're here)
+    home = os.environ['HOME']
+    os.chdir(home + '/Desktop/')
     name = kebabize(name)
     dirname = f"→{num}_{name}"
     os.makedirs(dirname)

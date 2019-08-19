@@ -1,7 +1,10 @@
 /* This script will click all the remove buttons on your YouTube playlist
-at a rate of 5/second. This is the fastest speed at which it's worked
-reliably for me, but you can try making it faster if you need to remove
-thousands of videos. Works as of 2019-08-19. */
+at a rate of 5/second*, provided that the whole playlist is loaded in the
+browser. If it spans multiple pages, you'll need to run this multiple times.
+(Sorry, I've never had a playlist that long.)
+
+*This is the fastest speed at which it's worked reliably for me, you can
+experiment with it if you want to. */
 
 // 1. Open your playlist in Chrome or Firefox
 // 2. Click EDIT next to your profile picture

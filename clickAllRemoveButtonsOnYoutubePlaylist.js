@@ -13,10 +13,10 @@ experiment with it if you want to. */
 //  - Firefox: cmd-shift-J (Mac) / ctrl-shift-J (Windows)
 // 4. Paste this code in:
 
-var remove_per_second = 5; // Tweak this number if you want to
-var keep_the_last = 0; // Set this number to keep the last N videos
+var removePerSecond = 5; // Tweak this number if you want to
+var keepTheLast = 0; // Set this number to keep the last N videos
 var removeButtons = document.querySelectorAll(".pl-video-edit-remove");
-var willRemove = removeButtons.length-keep_the_last;
+var willRemove = removeButtons.length-keepTheLast;
 var confirmed = prompt(
     `We're about to remove ${willRemove} videos from your playlist. ` +
     `This can not be undone. ` +
@@ -26,12 +26,12 @@ if (confirmed === "YES") {
     for (let i = 0; i < willRemove; i++) {
         setTimeout(
             ()=>removeButtons[i].click(),
-            1000/remove_per_second * i
+            1000/removePerSecond * i
         )
     }
     console.log(
         `Removing videos... ` +
-        `This should take about ${willRemove/remove_per_second} seconds.`)
+        `This should take about ${willRemove/removePerSecond} seconds.`)
 } else {
     console.log("No videos were removed.")
 }

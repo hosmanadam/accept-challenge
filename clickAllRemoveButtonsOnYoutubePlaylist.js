@@ -15,11 +15,16 @@
 // (or fork it, fix it yourself and submit a PR)
 
 
+// OPTIONS
+
 var CLICKS_PER_SECOND = 5; // Experiment with faster speeds if you want to
 var KEEP_THE_LAST = 0; // Set this number to keep the last N videos
+
+// END OPTIONS
+
+
 var RERUN_INSTRUCTIONS = "run this script again by clicking on the console, " +
                          "pressing the Up arrow, then Enter."
-
 
 var buttonsClicked = 0;
 

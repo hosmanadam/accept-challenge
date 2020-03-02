@@ -20,14 +20,15 @@
 var CLICKS_PER_SECOND = 5; // Experiment with faster speeds if you want to
 var KEEP_THE_LAST = 0; // Set this number to keep the last N videos
 
-// END OPTIONS
 
+// OTHER GLOBALS
 
 var RERUN_INSTRUCTIONS = "run this script again by clicking on the console, " +
                          "pressing the Up arrow, then Enter."
-
 var buttonsClicked = 0;
 
+
+// DEFINITIONS
 
 var onNewPage = () => {
     let queryString = window.location.search;
@@ -156,6 +157,8 @@ var logSuccess = () => {
     console.log("Done.");
 }
 
+
+// RUN
 
 if (onNewPage()) {
     redirectToOldPage();

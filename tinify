@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+
+"""
+Script that uses the free Tiny.cc API to shorten links from the command line.
+
+Setup:
+1. Create an account and API key (see https://tiny.cc/api-docs)
+2. Set up the 'TINYCC_LOGIN' AND 'TINYCC_API_KEY' environment variables
+3. Put this file somewhere on your path
+4. Make it executable if you need to
+
+Examples:
+- Only original URL specified:
+    $ tinify www.long.very/complicated/url/blablablablablablabla
+    tiny.cc/defaulturl  <- response
+- Original and custom URL specified:
+    $ tinify www.long.very/complicated/url/blablablablablablabla avocado
+    tiny.cc/avocado  <- response
+
+If anything goes wrong, the response from the API will be printed.
+"""
+
+from os import getenv
+from sys import argv
+from urllib.parse import quote
+
+from requests import get
+from json import loads
+
+original_url = argv[1]
+custom_ending = argv[2] if len(argv) > 2 else ''  # If empty, a default URL will be generated
+tinycc_login = getenv('TINYCC_LOGIN')
+tinycc_api_key = getenv('TINYCC_API_KEY')
+
+encoded_url = quote(original_url)
+
+request_url = f"https://tiny.cc/" \
+              f"?c=rest_api" \
+              f"&m=shorten" \
+              f"&version=2.0.3" \
+              f"&format=json" \
+              f"&shortUrl={custom_ending}" \
+              f"&longUrl={encoded_url}" \
+              f"&login={tinycc_login}" \
+              f"&apiKey={tinycc_api_key}"
+request_headers = {"User-Agent": ''}
+response = get(url=request_url, headers=request_headers)
+
+json = loads(response.text)
+error_code = json.get('errorCode')
+error_message = json.get('errorMessage')
+success = error_code == '0'
+
+if success:
+    shortened_url = response.json()['results']['short_url']
+    print(shortened_url)
+else:
+    print(f"Tiny.cc says: '{error_code} - {error_message}'")
